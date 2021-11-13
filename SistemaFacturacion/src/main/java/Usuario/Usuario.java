@@ -6,8 +6,15 @@ package Usuario;
 
 /**
  *
- * @author Ramses
+ * @author cebor
  */
-public class NewClass {
-    
+ public abstract class Usuario {
+    String nombre;
+    String contraseña;
+  public void cerrarSesion(){
+  }
+
+
+
+
 }
