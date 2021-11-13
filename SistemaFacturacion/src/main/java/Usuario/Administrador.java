@@ -17,8 +17,7 @@ public class Administrador extends Usuario {
     LocalDateTime fechaIn;
    // ArrayList<Factura> facturas;
     
-    @Override
-    public void cerrarSesion(){}
+
     public void registrarAbonado(){}
     public void Plan(){}
     public void registrarMedidor(){}

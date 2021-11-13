@@ -15,7 +15,34 @@ public class Plan {
     private Double costoKilovatio;
     private List<HorarioPico> picos;
     private List<Provincia> provincia; 
+    
+    public Plan(String nombre,Double costoKilovatio,List<HorarioPico> picos, List<Provincia> provincia){
+        this.nombre = nombre;
+        this.costoKilovatio = costoKilovatio;
+        this.picos = picos;
+        this.provincia = provincia;
+        
+    }
+    
+    public Plan(){
+    }
 
+    public List<HorarioPico> getPicos() {
+        return picos;
+    }
+
+    public void setPicos(List<HorarioPico> picos) {
+        this.picos = picos;
+    }
+
+    public List<Provincia> getProvincia() {
+        return provincia;
+    }
+
+    public void setProvincia(List<Provincia> provincia) {
+        this.provincia = provincia;
+    }
+    
     public String getNombre() {
         return nombre;
     }
@@ -30,6 +57,5 @@ public class Plan {
 
     public void setCostoKilovatio(Double costoKilovatio) {
         this.costoKilovatio = costoKilovatio;
-    }
-   
+    }  
 }

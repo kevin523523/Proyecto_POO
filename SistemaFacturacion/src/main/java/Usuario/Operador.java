@@ -9,8 +9,7 @@ package Usuario;
  * @author cebor
  */
 public class Operador extends Usuario{
-    @Override
-    public void cerrarSesion(){}
+
     public void registrarMedidor(){}
     
 }

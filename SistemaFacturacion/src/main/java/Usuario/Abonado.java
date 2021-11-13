@@ -14,8 +14,7 @@ import java.util.ArrayList;
 public class Abonado extends Usuario{
     String cedula;
     ArrayList<Medidor> medidores;
-   @Override
-    public void cerrarSesion(){}   
+
     public void consultarFactura(){}
     public void consultarHistoricoFacturado(){}
     public void consumoPorHoras(){}

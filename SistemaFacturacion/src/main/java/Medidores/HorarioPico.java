@@ -4,10 +4,13 @@
  */
 package Medidores;
 
+import java.time.LocalTime;
+
 /**
  *
  * @author Ramses
  */
 public class HorarioPico {
-    
+   private LocalTime horarioInicio;
+   private LocalTime horarioFin;
 }

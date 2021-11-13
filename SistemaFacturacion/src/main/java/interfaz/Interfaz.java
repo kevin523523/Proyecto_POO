@@ -50,8 +50,11 @@ public class Interfaz {
         System.out.print("Ingrese su contraseña: ");
         String contraseña = sc.nextLine();
         
+        /*
         for(:){
-            
+            if(usuario.equals()){
+            }
         }
+        */
     }
 }
