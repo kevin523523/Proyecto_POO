@@ -8,6 +8,8 @@ package Medidores;
  *
  * @author cebor
  */
-public class MedidorInteligente {
-    private int telemetria;
+public class MedidorInteligente extends Medidor {
+    public void calcularConsumo(){
+    
+    }   
 }

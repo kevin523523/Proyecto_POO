@@ -8,6 +8,7 @@ package Medidores;
  *
  * @author cebor
  */
-public class MedidorAnalogico {
-    
+public class MedidorAnalogico extends Medidor {
+    public void calcularConsumo(){
+    }
 }
