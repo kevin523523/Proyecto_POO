@@ -19,7 +19,7 @@ public class Administrador extends Usuario {
     
 
     public void registrarAbonado(){}
-    public void Plan(){}
+    public void registrarPlan(){}
     public void registrarMedidor(){}
     public void simularMedicion(){}
     public void realizarFacturacion(){}

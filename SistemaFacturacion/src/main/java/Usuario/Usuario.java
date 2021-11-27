@@ -9,12 +9,17 @@ package Usuario;
  * @author cebor
  */
  public abstract class Usuario {
-    String nombre;
+    String usuario;
     String contraseña;
-  public void cerrarSesion(){
-  }
-
-
-
+    
+    public String getUsuario(){
+        return usuario;
+    }
+    
+    public String getContraseña(){
+        return contraseña;
+    }
+    public void cerrarSesion(){
+    }
 
 }

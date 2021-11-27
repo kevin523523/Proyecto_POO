@@ -18,7 +18,6 @@ public class Abonado extends Usuario{
     public void consultarFactura(){}
     public void consultarHistoricoFacturado(){}
     public void consumoPorHoras(){}
-            
-            
+       
 }
 

@@ -10,6 +10,8 @@ package Usuario;
  */
 public class Operador extends Usuario{
 
-    public void registrarMedidor(){}
+    public void registrarMedicion(double medicion){
+        System.out.println("a");
+    }
     
 }
