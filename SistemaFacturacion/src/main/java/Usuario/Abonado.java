@@ -6,6 +6,7 @@ package Usuario;
 
 import Medidor.Medidor;
 import Factura.Factura;
+import Medidor.MedidorInteligente;
 
 import java.util.*;
 import java.time.temporal.ChronoUnit;
@@ -94,7 +95,7 @@ public class Abonado extends Usuario{
 
     }
 
-   @Override
+   
    public boolean equals(Object obj){
      if(obj !=null){
        if(obj instanceof Abonado){
