@@ -9,8 +9,15 @@ package Usuario;
  * @author cebor
  */
  public abstract class Usuario {
-    String usuario;
-    String contraseña;
+    private String usuario;
+    private String contraseña;
+    
+    public Usuario(String usuario, String contraseña){
+      
+      this.usuario = usuario;
+      this.contraseña = contraseña;
+    }
+    
     
     public String getUsuario(){
         return usuario;
@@ -19,7 +26,4 @@ package Usuario;
     public String getContraseña(){
         return contraseña;
     }
-    public void cerrarSesion(){
-    }
-
 }

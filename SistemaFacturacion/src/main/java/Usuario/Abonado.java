@@ -4,20 +4,57 @@
  */
 package Usuario;
 
-import Medidores.Medidor;
-import java.util.ArrayList;
+import Medidor.Medidor;
+import Factura.Factura;
+
+import java.util.*;
 
 /**
  *
  * @author cebor
  */
 public class Abonado extends Usuario{
-    String cedula;
-    ArrayList<Medidor> medidores;
+    private String nombre;  
+    private String cedula;
+    private String correo;
+    private String direccion;
+    private ArrayList<Medidor> medidores;
+    
+    
+    public Abonado(String cedula, String contraseña, String correo, String direccion, String nombre){
+      super(cedula,contraseña);
+      this.correo = correo;
+      this.direccion = direccion;
+      this.nombre = nombre;
+      this.cedula = cedula;
+    }
 
-    public void consultarFactura(){}
-    public void consultarHistoricoFacturado(){}
-    public void consumoPorHoras(){}
+    public String getCedula(){
+      return cedula;
+    }
+
+    public String getCorreo(){
+      return correo;
+    }
+    
+    public String getDireccion(){
+      return direccion;
+    }
+    
+    public String getNombre(){
+      return nombre;
+    }
+
+    public void consultarFactura(Factura facturas){
+
+    }
+    
+    public void consultarHistoricoFacturado(Medidor medidores){
+      
+    }
+
+    public void consumoPorHoras(Medidor medidores){
+
+    }
        
 }
-
