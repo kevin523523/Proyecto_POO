@@ -27,6 +27,7 @@ public class FacturaSystem {
     Usuario a = new Administrador("admin", "superadmin");
     Usuario b = new Operario("op", "op");
     Usuario c = new Operario("ap", "ap");
+    
     //Plan p = new Plan("kevin-residencial-1", 12.5, {"GUAYAS"}, 3.5, {"11-2-2021"});
     
     Usuario d = new Abonado("120", "123", "correo c", "direccion A", "Ian g");
@@ -53,11 +54,13 @@ public class FacturaSystem {
     }
     public void iniciar(){
         String entrada = "";
-        do{
-            presentarMenuPrincipal();
+        boolean bandera = true;
+        presentarMenuPrincipal();
+        do{            
             System.out.print("Ingrese el número de la opción a realizar: ");
             entrada = sc.nextLine();
             switch(entrada){
+                //Ya esta
                 case "1":
                     boolean continuar = true;
                     do{
@@ -78,20 +81,23 @@ public class FacturaSystem {
                             System.out.println("Usuario o contraseña incorrecta, vuelva a ingresar sus datos.\n");
                             continuar = true;
                         }
-                    }while(continuar);                   
+                    }while(continuar);  
+                    //bandera = false;
                     break;
                      
                 case "2":
                     //mostramos mensaje de finalizacion
                     salir();
+                    //bandera = false;
                     break;
                     
                 default:
                     //la opcion ingreada no esta dentro de las opciones del menú
-                    System.out.println("Opcion inválida. vuelva a ingresar entre 1 o 2.");
+                    System.out.println("Opcion inválida. vuelva a ingresar entre 1 o 2.\n");
+                    //bandera = true;
                     break;
             }
-        }while(!entrada.equals("2"));
+        }while(!(entrada.equals("2")));
     }
     
     public boolean verificarUsuario(String usuario, String contraseña){
@@ -105,7 +111,7 @@ public class FacturaSystem {
     public void iniciarSesion(String usuario, String contraseña){
         if(!(usuarios.isEmpty())){
             for(Usuario u : usuarios){
-                if(u.getUsuario().equals(usuario) && u.getContraseña().equals(contraseña)){
+                if(verificarUsuario(usuario, contraseña)){
                     //Si el usuario ingresado es Administrador
                     if(u instanceof Administrador){
                         System.out.println("\n1. Registrar Abonado");
@@ -118,6 +124,7 @@ public class FacturaSystem {
                         Administrador ad = (Administrador)u;
                         
                         do{
+                            //Validado
                             System.out.print("\nIngrese el número de la opción a realizar: ");
                             opcion = sc.nextLine();                            
                             
@@ -148,9 +155,10 @@ public class FacturaSystem {
                                     }while(bandera);                                                                                                         
                                     break;
 
-                                case "2":                                    
-                                    //OJO
-                                    //if(!(planes.isEmpty())){                                                                                
+                                case "2":        
+                                    //:v
+ 
+                                                                               
                                         //Validar el nombre del plan
                                         //ArrayList de nombres de planes(String)
                                         ArrayList<String> nombresplanes = new ArrayList<>();
@@ -161,7 +169,7 @@ public class FacturaSystem {
                                         
                                         boolean bandera1 = true;
                                         String nombrePlan = "";
-                                        do{
+                                        do{                                           
                                             System.out.print("Ingrese el nombre del plan: ");
                                             nombrePlan = sc.nextLine();
                                             
@@ -183,19 +191,27 @@ public class FacturaSystem {
                                                 System.out.println("Cuando quiere dejar de agregar provincias escriba no.");                                                
                                                 
                                                 //Validacion de la provincia
+                                                /////////////////////////////////////////////////
                                                 String provincia = "";
-                                                
-                                                while(bandera2){
-                                                  System.out.print("Ingrese la provincia que pertenezca al plan: ");
-                                                  provincia = sc.nextLine();
-                                                  
-                                                  for (Provincia p: provincias){
-                                                    if (p.toString().equals(provincia.toUpperCase())){
-                                                      Lprovincia.add(provincia);
-                                                    }else if((provincia.toLowerCase()).equals("no")){
-                                                      bandera2 = false;
-                                                    }
-                                                  }
+          
+                                                while (bandera2) {
+                                                    do{
+                                                        System.out.print("Ingrese la provincia que pertenezca al plan: ");
+                                                        provincia = sc.nextLine();                                          
+           
+                                                        for (Provincia p : provincias) {
+                                                            if (p.toString().equals(provincia.toUpperCase())){
+                                                                Lprovincia.add(provincia);
+                                                                
+                                                            } else if ((provincia.toLowerCase()).equals("no")) {
+                                                                bandera2 = false;
+                                                            }
+                                                        }
+                                                        if(){
+                                                                System.out.println("Provincia invalida, vuelva a ingresar una valida");
+                                                                bandera2 = false;
+                                                            }                                  
+                                                    } while(bandera2);
                                                 }
                                                                                                 
                                                 //Seguimos pidiendo los otros datos
@@ -207,11 +223,12 @@ public class FacturaSystem {
                                                 ////////////////////////////////////////////////////////AQUI
                                                 System.out.print("Ingrese el numero de rangos de horas pico a ingresar: #");
                                                 int repeticiones = sc.nextInt();
+                                                sc.nextLine();
                                                 
                                                 ArrayList<HorarioPico> list_localTime = new ArrayList<>();
-                                                
+                                                System.out.println("Siga el siguiente modelo(hora:minuto-hora:minuto): 14:10-15:30");
                                                 for(int i = 1; i<=repeticiones; i++){                                                    
-                                                    System.out.print("Siga el siguiente modelo(hora:minuto-hora:minuto): 14:10-15:30");
+                                                    
                                                     System.out.print("Ingrese el rango de la hora pico: ");
                                                     String horasPico = sc.nextLine();
                                                     String[] rangos = horasPico.split("-");
@@ -224,16 +241,17 @@ public class FacturaSystem {
                                                     HorarioPico horario=new HorarioPico(hp0 ,hp1);
                                                     list_localTime.add(horario);
                                                 }
-                                                                                                              //14:00-15:00
-                                                ad.registrarPlan(nombrePlan, costo, Lprovincia, cargoBase, list_localTime);
+                                                                                                  //14:00-15:00
+                                                ad.registrarPlan(nombrePlan, costo, Lprovincia, cargoBase, list_localTime);                                               
                                                 bandera1 = false;
+                                                System.out.println("Registro satisfactorio.");
                                                 break;
                                             }
-                                        }while(bandera1);                                                                                                                 
-                                    //}                                    
-                                    break;
+                                        }while(bandera1);                                                                                                                                                     
+                                        break;
                                     
                                 case "3":
+                                    //Validado
                                     //Abonado
                                     //Validacion para que el numero de cedula no se repita 
                                     ArrayList<String> abonadoCedula = new ArrayList<>(); 
@@ -258,7 +276,7 @@ public class FacturaSystem {
                                             ad.registrarAbonado(cedula3);
                                             bandera3 = false;
                                         }else if(abonadoCedula.contains(cedula3)){
-                                            System.out.println("Ya existe un abonado con esta cédula.");
+                                            System.out.println("Si existe un abonado con esta cédula.");
                                             ingresarDatosRegistroMedidor(ad);
                                             bandera3 = false;
                                         }
@@ -267,7 +285,8 @@ public class FacturaSystem {
                                     break;
                                     
                                 case "4":
-                                    System.out.print("Siga el siguiente modelo(dia-mes-año) 30-11-2021");
+                                    //:v
+                                    System.out.println("Siga el siguiente modelo(dia-mes-año) 30-11-2021");
                                     System.out.print("Ingrese fecha de inicio: ");
                                     String fechaInicio = sc.nextLine();
                                                                       
@@ -277,7 +296,7 @@ public class FacturaSystem {
                                     LocalDateTime fInicio= LocalDate.parse(fechaInicio).atStartOfDay();
                                     LocalDateTime fFinal = LocalDate.parse(fechaFin).atStartOfDay();
                                     for(Medidor m : medidores){
-                                      if( m instanceof MedidorInteligente){
+                                      if(m instanceof MedidorInteligente){
                                         MedidorInteligente mi = (MedidorInteligente)m;
                                         mi.getCodigoMedidor();
                                       }
@@ -285,7 +304,8 @@ public class FacturaSystem {
                                     //ad.simularMedicion(fInicio, fFinal);
                                     break;
                                     
-                                case "5":                                    
+                                case "5": 
+                                    //:V
                                     for(Medidor me: medidores){
                                       if(me instanceof MedidorAnalogico){
                                         MedidorAnalogico mA =(MedidorAnalogico)me;                                     
@@ -317,11 +337,18 @@ public class FacturaSystem {
                         do{
                             System.out.print("\nIngrese el número de la opción a realizar: ");
                             opcion = sc.nextLine();
+                            
                             Operario o = (Operario)u;
 
                             switch(opcion){
-                                case "1":
-                                   //o.registrarMedicion(codigo);
+                                case "1":                                  
+                                    System.out.println("Operario: "+o.getUsuario());
+                                    for(Usuario ur : usuarios){
+                                      if(ur instanceof Abonado){
+                                        Abonado ab = (Abonado)ur;
+                                        o.registrarMedicion(ab.getMedidores(),ab,o); 
+                                      }  
+                                    }                                                                       
                                     break;
                                 case "2":
                                     salir();
@@ -377,14 +404,14 @@ public class FacturaSystem {
       System.out.print("\nIngrese su direccion de donde ubicara el medidor: ");
       String direccion = sc.nextLine();
 
-      System.out.println("Tipos de medidor: ");
+      System.out.println("\nTipos de medidor: ");
       System.out.println("1. Medidor Inteligente");
-      System.out.println("2. Medidor Analogico\n");
-
+      System.out.println("2. Medidor Analogico");
+      
       String numero = "";
       String tipo_medidor = "";
-
       do{ //Validar que el tipo de medidor sea analogico o inteligente
+        
         System.out.print("\nIngrese el numero del tipo del medidor que desea (1 o 2): ");
         numero = sc.nextLine();
         switch(numero){
@@ -398,7 +425,7 @@ public class FacturaSystem {
             System.out.println("Opcion inválida. vuelva a ingresar entre 1 y 2.");
             break;
           }
-        }while(!numero.equals("2"));
+        }while(!numero.equals("2") && !numero.equals("1"));
 
       System.out.print("Ingrese el nombre del tipo del plan que desea: ");
       String nombre_plan = sc.nextLine();
@@ -412,8 +439,8 @@ public class FacturaSystem {
       ////------------>ArrayList de nombres de planes(String)
       while(bandera){
         if (!(nombresPlan.contains(nombre_plan))){//----------->pregunta si nombre q usuario ingresa se encuentra en nombres
-          System.out.print("El plan no existe ingrese de nuevo: ");
-          System.out.print("Ingrese el nombre del plan: ");
+          System.out.println("El plan no existe ingrese de nuevo.");
+          System.out.print("\nIngrese el nombre del plan: ");
           nombre_plan = sc.nextLine();
         }else{
           int indice = nombresPlan.indexOf(nombre_plan);

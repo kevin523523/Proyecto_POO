@@ -49,6 +49,10 @@ public class Abonado extends Usuario{
       return nombre;
     }
 
+    public ArrayList<Medidor> getMedidores() {
+        return medidores;
+    }
+
     public void consultarFactura(Factura facturas){
 
     }
