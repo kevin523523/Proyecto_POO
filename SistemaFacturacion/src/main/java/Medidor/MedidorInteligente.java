@@ -3,11 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Medidor;
-import Factura.Plan;
-import Factura.Lectura;
-import Factura.HorarioPico;
 import java.util.*;
 import java.time.*;
+import Factura.*;
 /**
  * @author cebor
  */

@@ -1,13 +1,12 @@
-/*
+  /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Medidor;
 
-import Factura.Plan;
-import Factura.Lectura;
 import java.util.*;
 import java.util.UUID;
+import Factura.*;
 import java.time.*;
 
 /**
@@ -19,7 +18,7 @@ public abstract class Medidor {
    private Plan plan;
    //private Provincia provincia;
    private String direccion;
-   private ArrayList<Lectura> lecturas;
+   private ArrayList<Lectura> lecturas;  
    private LocalDateTime ultimaFechaCobrado;
    private double consumoUltimaFecha;//consumoUltimaFacturade KW
 
@@ -103,4 +102,5 @@ public abstract class Medidor {
      }
    }
    
+
 

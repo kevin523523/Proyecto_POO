@@ -3,10 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Medidor;
-import Factura.Plan;
-import Factura.Lectura;
+import Factura.*;
 import java.time.*;
 import java.util.*;
+import Usuario.*;
 
 /**
  *
@@ -14,6 +14,7 @@ import java.util.*;
  */
 
 public class MedidorAnalogico extends Medidor {
+  private Operario operario;
   
   public MedidorAnalogico (Plan plan,String direccion, ArrayList<Lectura> lectura, LocalDateTime ufc, int cUF){
     super(plan, direccion, lectura,  ufc,  cUF);
@@ -38,6 +39,10 @@ public double calcularConsumo(ArrayList<Lectura> lecturas){
     double consumo = calcularConsumo(lecturas); 
     double total= p.getCargoBase()+(p.getCostoKilovatio()*consumo);
     return total;
+  }
+
+  public void setOperario(Operario operario){
+    this.operario = operario;
   }
 
 }
