@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
  *
  * @author Ramses
  */
+
 public class Lectura {
     //private Operario operario;
     private LocalDateTime fechaToma;

@@ -4,7 +4,6 @@ import Medidor.Medidor;
 import java.time.*;
 import java.util.* ;
 import java.math.BigInteger;
-
 public class Factura{
   private LocalDateTime fechaEmision;
   private String codigoFactura; //falta- aleatorio de puros numeros
@@ -19,6 +18,8 @@ public class Factura{
   private double totalPagar;
 
   //Creo que abinado no lo utilizas
+
+
   public Factura( Medidor medidor){ // Abonado abonado 
     this.fechaEmision = LocalDateTime.now();
     //en vez de this.codigoFactura hay que generar aleatoriamente un codigo de factura asi como el codigo del medidor pero el codigo de factura son solo numeros
@@ -26,6 +27,8 @@ public class Factura{
     this.medidor= medidor;
     this.plan = medidor.getPlan();
     //this.abonado = abonado;
+
+
     this.consumo = medidor.calcularConsumo(medidor.getLecturas());
     //this.medidaUltimaLecturaCobrada=medidor.getLecturas().get(medidor.getLecturas().size()-1).getKilovatios() ;
     this.medidaUltimaLecturaCobrada = medidor.getConsumoUltimaFecha();
@@ -38,12 +41,32 @@ public class Factura{
     public double getConsumo(){
       return consumo;
     }
-/*public setFechaEmision(LocalDateTime fechaEmision){
-  this.fechaEmision=fechaEmision;
+public LocalDateTime getFechaEmision(){
+  return fechaEmision;
 }
-public setCodigoFactura(String codigoFactura){
-  this.codigoFactura=codigofactura;
-}*/
+public Abonado getAbonado(){
+  return abonado;
+}
+
+public String getCodigoFactura(){
+  return codigoFactura;
+}
+
+public Plan getPlan(){
+  return plan;
+}
+public String datos(){
+  return codigoFactura+"     "+fechaEmision+"     "+medidor.getCodigoMedidor();
+}
+
+
+public String datosFactura(ArrayList<Factura> facturas){
+  double consumoAct = facturas.get(facturas.size()-1).getConsumo() - consumo;
+  long diasFacturados=ChronoUnit.DAYS.between(fechaEmision,facturas.get(facturas.size()-1).getFechaEmision() );
+  return "Medidor: "+medidor.getCodigoMedidor()+"\nNombre del plan: "+plan.getNombrePlan()+"\nDesde: "+ fechaEmision +"\nHasta: "+ facturas.get(facturas.size()-1).getFechaEmision() +"\nDíasFacturados: "+diasFacturados+"\nLectura Anterior: "+consumo +"\nLectura Actual: "+facturas.get(facturas.size()-1).getConsumo()+"\nConsumo: "+consumoAct+"\nCargoFijo: $"+ plan.getCargoBase() +"\nTotal a pagar: "+ "5151.00";
+
+}
+
  // public Factura generarFactura(){
    // return Factura;
  // }

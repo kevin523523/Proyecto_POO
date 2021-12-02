@@ -35,7 +35,7 @@ public class Administrador extends Usuario{
 
     public Abonado registrarAbonado(String cedula){
       
-      System.out.print("\nIngrese correo nombre del abonado: ");
+      System.out.print("Ingrese correo nombre del abonado: ");
       String correo = sc.nextLine();
       System.out.print("Ingrese nombre del abonado: ");
       String nombre = sc.nextLine();
@@ -51,7 +51,7 @@ public class Administrador extends Usuario{
       String a =UUID.randomUUID().toString().toUpperCase().substring(0,6);
       String contraseña = l1+a+l2;
 
-      System.out.println("Ingrese su direccion de donde ubicara el medidor: ");
+      System.out.println("Ingrese su direccion: ");
       String direccion = sc.nextLine();
       //Nombre de USUARIO como cedula
       
@@ -100,7 +100,8 @@ public class Administrador extends Usuario{
     } // int    n=abonado.getMedidores.size()-1;
  }
                              //         (abonado.getMedidores.get(n),abonado)
-    public void realizarFacturacion(Medidor medidor){
+
+    public void realizarFacturacion(Medidor medidor, Abonado abonado,ArrayList<Factura> facturas){
       Factura factura = new Factura(medidor);
       
       double actualKw=factura.getMedidor().getLecturas().get(factura.getMedidor().getLecturas().size()-1).getKilovatios();
@@ -108,19 +109,18 @@ public class Administrador extends Usuario{
       LocalDateTime fFin= factura.getMedidor().getLecturas().get(factura.getMedidor().getLecturas().size()-1).getFechaToma();
       long difDias=ChronoUnit.DAYS.between(fInicio,fFin);
 
-      System.out.println("Fecha de emisión: "+LocalDateTime.now());
+      System.out.println("Fecha de emisión: "+factura.getFechaEmision());
       System.out.println("Código del Medidor: "+ factura.getMedidor().getCodigoMedidor());
       System.out.println("Nombre del Plan: "+ factura.getMedidor().getPlan().getNombrePlan());
       System.out.println("Fecha lectura anterior: "+ factura.getMedidor().getUltimaFechaCobrado());//
       System.out.println("Fecha lectura actual: "+ fFin);
-      System.out.println("Número de días Facturados: "+ difDias);///
+      System.out.println("Número de días Facturados: "+ difDias+"días");///
       System.out.println("Kw lectura anterior: "+ factura.getMedidor().getConsumoUltimaFecha()+" Kw");///falta
       System.out.println("Kw lectura actual: "+ actualKw+"Kw");///falta
       System.out.println("Consumo en kilovatios: "+factura.getConsumo()+" Kw");
       System.out.println("Cargo Fijo del Plan: "+factura.getMedidor().getPlan().getCargoBase());
-      
       System.out.println("Total a pagar: "+factura.getMedidor().calcularCosto(factura.getMedidor().getLecturas(), factura.getMedidor().getPlan()));
-
+      facturas.add(factura);
     ///enviar al correo del Abonado
     }
 }
