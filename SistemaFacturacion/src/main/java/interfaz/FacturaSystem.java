@@ -259,12 +259,15 @@ public class FacturaSystem {
                                 case "3":
                                     //Validado        
                                     //Validacion para que el numero de cedula no se repita 
-                                    ArrayList<String> abonadoCedula = new ArrayList<>(); 
+                                    ArrayList<String> abonadoCedula = new ArrayList<>();
+                                    ArrayList<Abonado> abonados = new ArrayList<>();
                                     
                                     for(Usuario ur : usuarios){
+                                        
                                         if(ur instanceof Abonado){
                                             Abonado ab = (Abonado)ur;
                                             abonadoCedula.add(ab.getCedula());  
+                                            abonados.add(ab);
                                         }
                                     } 
                                                                         
@@ -278,15 +281,21 @@ public class FacturaSystem {
                                             System.out.println("No existe un abonado con esta cédula");
                                             //Se lo procede a registra
                                             System.out.println("Se lo procedera a registrar:\n");
-                                            ad.registrarAbonado(cedula3);
+                                           Abonado abonadNew=ad.registrarAbonado(cedula3);
+                                              ingresarDatosRegistroMedidor(ad,abonadNew);
                                             bandera3 = false;
                                         }else if(abonadoCedula.contains(cedula3)){
                                             System.out.println("Si existe un abonado con esta cédula.");
-                                            ingresarDatosRegistroMedidor(ad);
+                                                
+                                            int pos= abonadoCedula.indexOf(cedula3);
+                                            
+                                            
+                                            ingresarDatosRegistroMedidor(ad,abonados.get(pos));
                                             bandera3 = false;
+                                            break;
                                         }
                                     }while(bandera3);                                   
-                                    ingresarDatosRegistroMedidor(ad);
+                                 
                                     break;
                                     
                                 case "4":
@@ -311,15 +320,16 @@ public class FacturaSystem {
                                     
                                 case "5": 
                                     //:V
-                                    for(Medidor me: medidores){
-                                      if(me instanceof MedidorAnalogico){
-                                        MedidorAnalogico mA =(MedidorAnalogico)me;                                     
-                                        ad.realizarFacturacion(mA);                                  
-                                      }
-                                      else if(me instanceof MedidorInteligente){
-                                        MedidorInteligente mI = (MedidorInteligente)me;                                   
-                                        ad.realizarFacturacion(mI);
-                                      }
+                                    
+                                    for(Usuario us: usuarios){
+                                        
+                                           if (us instanceof Abonado){ 
+                                            Abonado ab=(Abonado) u;
+                                            for(Medidor medidor: ab.getMedidores()){
+                                                ad.realizarFacturacion(medidor,ab,facturas);
+                                            }
+                                      
+                                    }
                                     }
                                     break;
 
@@ -405,7 +415,7 @@ public class FacturaSystem {
         System.out.println("Gracias por preferirnos, adiós.\n");
     }
 
-    public void ingresarDatosRegistroMedidor(Administrador ad){
+    public void ingresarDatosRegistroMedidor(Administrador ad,Abonado ab){
       System.out.print("\nIngrese su direccion de donde ubicara el medidor: ");
       String direccion = sc.nextLine();
 
@@ -451,7 +461,7 @@ public class FacturaSystem {
           int indice = nombresPlan.indexOf(nombre_plan);
 
           //se registra el medidor se agrega a la lista de medidores el medidor que se registro
-          medidores.add(ad.registrarMedidor(direccion, tipo_medidor, planes.get(indice)));
+          medidores.add(ad.registrarMedidor(direccion, tipo_medidor, planes.get(indice), ab ) );
           bandera = false;
           break;
         }                                          
