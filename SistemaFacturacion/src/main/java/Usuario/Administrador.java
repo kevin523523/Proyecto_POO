@@ -127,6 +127,7 @@ public class Administrador extends Usuario {
         System.out.println("Cargo Fijo del Plan: " + factura.getMedidor().getPlan().getCargoBase());
         System.out.println("Total a pagar: " + factura.getMedidor().calcularCosto(factura.getMedidor().getLecturas(), factura.getMedidor().getPlan()));
         facturas.add(factura);
-        ///enviar al correo del Abonado
+        ///enviar al correo del Abonado  
+        Correo.enviarEMail(abonado.getCorreo(), "Datos de la factura: ", factura.datosFactura(facturas));
     }
 }
