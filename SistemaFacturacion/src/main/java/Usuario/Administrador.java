@@ -37,7 +37,7 @@ public class Administrador extends Usuario {
 
     public Abonado registrarAbonado(String cedula) {
 
-        System.out.println("Ingrese correo nombre del abonado: ");
+        System.out.println("Ingrese correo del abonado: ");
         String correo = sc.nextLine();
         System.out.println("Ingrese nombre del abonado: ");
         String nombre = sc.nextLine();
@@ -83,27 +83,28 @@ public class Administrador extends Usuario {
 
 ///simularMedicion
     public void simularMedicion(LocalDateTime fechaInicio, LocalDateTime fechaFin, ArrayList<Medidor> medidores) {
-        System.out.println("Fecha inicio:" + fechaInicio);
-        System.out.println("Fecha Fin:" + fechaFin);
+        
+        long fdias = ChronoUnit.DAYS.between(fechaInicio, fechaFin);
+
         ArrayList<MedidorInteligente> medidoresInteligentes = new ArrayList<>();
 
         for (Medidor medidor : medidores) {
-
             if (medidor instanceof MedidorInteligente) {
                 MedidorInteligente mi = (MedidorInteligente) medidor;
-                medidoresInteligentes.add(mi);
-                //  ArrayList<Lectura> lecturas = medidor.getLecturas();
-                //for(Lectura )         
+                medidoresInteligentes.add(mi); 
             }
-            for (MedidorInteligente medidorI : medidoresInteligentes) {
-                System.out.println("Lecturas para el medidor con codigo" + medidorI.getCodigoMedidor() + "con valor actual" + medidorI.getConsumoUltimaFecha());
-                for (int x = 0; x < medidorI.getLecturas().size(); x++) {
-                    if ((fechaInicio.compareTo(medidorI.getLecturas().get(x).getFechaToma()) < 0 || fechaInicio.compareTo(medidorI.getLecturas().get(x).getFechaToma()) == 0) && fechaFin.compareTo(medidorI.getLecturas().get(x).getFechaToma()) > 0) {
-                        System.out.println(medidorI.toString(x));
-                    }
-                }
+        }
+        double acumula = 0;
+        System.out.println("Hay " + (medidoresInteligentes.size()) + " medidores inteligentes");
+        for (MedidorInteligente medidorI : medidoresInteligentes) {
+            for (long x = 0; x < fdias; x++) {
+                double kw = new Random().nextInt(10);
+                acumula = acumula+ kw;
+                System.out.println("FOR: " + kw);
+                System.out.println(medidorI.getCodigoMedidor()+" con valor actual:  "+medidorI.kwActual(acumula));
             }
-        } // int    n=abonado.getMedidores.size()-1;
+        }
+        // int    n=abonado.getMedidores.size()-1;
     }
     //         (abonado.getMedidores.get(n),abonado)
 

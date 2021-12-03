@@ -48,7 +48,7 @@ public class Operario extends Usuario {
                                     System.out.println("Medidor analogico a nombre de " + ab.getNombre() + ".");///a nombre de quien??
                                     System.out.println("Ultima lectura realizada " + med.getUltimaFechaCobrado());
                                     System.out.println("Lectura anterior " + med.getConsumoUltimaFecha() + " Kw.");
-                                    System.out.print("Ingrese la lectura actual: ");
+                                    System.out.println("Ingrese la lectura actual: ");
                                     double lecturaActual = sc.nextInt();
                                     sc.nextLine();
                                     double kw = lecturaActual - med.getConsumoUltimaFecha();

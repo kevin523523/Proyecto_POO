@@ -6,6 +6,7 @@ package Medidor;
 import java.util.*;
 import java.time.*;
 import Factura.*;
+import java.util.Random;
 /**
  * @author cebor
  */
@@ -65,8 +66,9 @@ public class MedidorInteligente extends Medidor {
     return total;
   }
 
-  public String toString(int n){
-    return getCodigoMedidor()+", "+getLecturas().get(n).getFechaToma()+", "+ getLecturas().get(n).getKilovatios();
-  }
-  
+    public double kwActual(double kw) {
+        double kwActual = 300;
+        return kwActual += kw;
+    }
+
 }

@@ -55,8 +55,8 @@ public class FacturaSystem {
     Usuario a = new Administrador("admin", "superadmin");
     Usuario b = new Operario("op", "op");
     Usuario c = new Operario("ap", "ap");
-    Usuario d = new Abonado("120", "123", "correo c", "10 de Agosto", "Ian g", medidor_Op1);
-    Usuario e = new Abonado("121", "345", "correo cr", "23 de Octubre", "Ri G", medidor_Op2);
+    Usuario d = new Abonado("120", "123", "iang@gamil.com", "10 de Agosto", "Ian g", medidor_Op1);
+    Usuario e = new Abonado("121", "345", "rig@gamil.com", "23 de Octubre", "Ri G", medidor_Op2);
 
     //Agregamos los usuarios a el arreglo usuarios
     ArrayList<Usuario> usuarios = new ArrayList<>(Arrays.asList(a, b, c, d, e));
@@ -165,6 +165,13 @@ public class FacturaSystem {
                                         if (!(cedulas.contains(cedula))) {
                                             System.out.println("No existe un abonado con esta cédula");
                                             ad.registrarAbonado(cedula);
+                                            System.out.println("Registro satisfactorio.");
+                                            System.out.println("\n1. Registrar Abonado");
+                                            System.out.println("2. Registrar plan");
+                                            System.out.println("3. Registrar medidor");
+                                            System.out.println("4. Simular medicion");
+                                            System.out.println("5. Realizar facturacion");
+                                            System.out.println("6. Salir");
                                             bandera = false;
                                         } else if (cedulas.contains(cedula)) {
                                             System.out.println("Ya existe un abonado con esta cédula, ingrese otra.\n");
@@ -303,6 +310,12 @@ public class FacturaSystem {
                                             Abonado abonadNew = ad.registrarAbonado(cedula3);
                                             ingresarDatosRegistroMedidor(ad, abonadNew);
                                             System.out.println("Registro satisfactorio.");
+                                            System.out.println("\n1. Registrar Abonado");
+                                            System.out.println("2. Registrar plan");
+                                            System.out.println("3. Registrar medidor");
+                                            System.out.println("4. Simular medicion");
+                                            System.out.println("5. Realizar facturacion");
+                                            System.out.println("6. Salir");
                                             bandera3 = false;
                                         } else if (abonadoCedula.contains(cedula3)) {
                                             System.out.println("Si existe un abonado con esta cédula.");
@@ -310,29 +323,52 @@ public class FacturaSystem {
                                             int pos = abonadoCedula.indexOf(cedula3);
 
                                             ingresarDatosRegistroMedidor(ad, abonados.get(pos));
+                                            System.out.println("Registro satisfactorio.");
+                                            System.out.println("\n1. Registrar Abonado");
+                                            System.out.println("2. Registrar plan");
+                                            System.out.println("3. Registrar medidor");
+                                            System.out.println("4. Simular medicion");
+                                            System.out.println("5. Realizar facturacion");
+                                            System.out.println("6. Salir");
                                             bandera3 = false;
                                             
                                         }
                                     } while (bandera3);
-////////////////////////////////////
                                     break;
 
                                 case "4":
+                                    boolean bandera4 = true;
+                                    do {
+                                        System.out.println("Siga el siguiente modelo(año-mes-dia) 2021-11-01");
+                                        
 
-                                    System.out.println("Siga el siguiente modelo(dia-mes-año) 30-11-2021");
-                                    System.out.println("Ingrese fecha de inicio: ");
-                                    String fechaInicio = sc.nextLine();
+                                        System.out.println("Fecha inicio: ");
+                                        String fechaInicio = sc.nextLine();
 
-                                    System.out.println("Ingrese fecha de fin: ");
-                                    String fechaFin = sc.nextLine();
-
-                                    LocalDateTime fInicio = LocalDate.parse(fechaInicio).atStartOfDay();
-                                    LocalDateTime fFinal = LocalDate.parse(fechaFin).atStartOfDay();
-
-                                    ad.simularMedicion(fInicio, fFinal, medidores);
+                                        System.out.println("Fecha Fin:");
+                                        String fechaFin = sc.nextLine();
+ 
+                                        LocalDateTime fInicio = LocalDate.parse(fechaInicio).atStartOfDay();
+                                        LocalDateTime fFinal = LocalDate.parse(fechaFin).atStartOfDay();
+                                        
+                                        if(fInicio.compareTo(fFinal)<0){
+                                            ad.simularMedicion(fInicio, fFinal, medidores);
+                                            bandera4 = false;
+                                            
+                                        }
+                                        
+                                    } while(bandera4);
+                                    System.out.println("Simulacion satisfactoria.");
+                                    System.out.println("\n1. Registrar Abonado");
+                                    System.out.println("2. Registrar plan");
+                                    System.out.println("3. Registrar medidor");
+                                    System.out.println("4. Simular medicion");
+                                    System.out.println("5. Realizar facturacion");
+                                    System.out.println("6. Salir");
                                     break;
 
                                 case "5":
+                                    
                                     //Validado                                   
                                     for (Usuario us : usuarios) {
 
@@ -340,6 +376,13 @@ public class FacturaSystem {
                                             Abonado ab = (Abonado) u;
                                             for (Medidor medidor : ab.getMedidores()) {
                                                 ad.realizarFacturacion(medidor, ab, facturas);
+                                                System.out.println("Registro satisfactorio.");
+                                                System.out.println("\n1. Registrar Abonado");
+                                                System.out.println("2. Registrar plan");
+                                                System.out.println("3. Registrar medidor");
+                                                System.out.println("4. Simular medicion");
+                                                System.out.println("5. Realizar facturacion");
+                                                System.out.println("6. Salir");
                                             }
 
                                         }
@@ -376,7 +419,6 @@ public class FacturaSystem {
                             switch (opcion) {
                                 case "1":
                                     System.out.println("Operario: " + o.getUsuario());
-
                                     o.registrarMedicion(medidores, usuarios, o);
                                     break;
                                 case "2":
