@@ -18,7 +18,7 @@ import javax.mail.internet.MimeMessage;
  */
 public class Correo {
 
-    public static void enviarConGMail(String destinatario, String asunto, String contenido) {
+    public static void enviarEMail(String destinatario, String asunto, String contenido) {
         String emisor = "facturasystemprueba@gmail.com";
         String clave = "FACTURASYSTEM";
 
