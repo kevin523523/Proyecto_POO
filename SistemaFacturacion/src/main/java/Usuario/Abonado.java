@@ -25,12 +25,21 @@ public class Abonado extends Usuario{
     private ArrayList<Medidor> medidores;
     
     
-    public Abonado(String cedula, String contraseña, String correo, String direccion, String nombre){
+    public Abonado(String cedula, String contraseña, String correo, String direccion, String nombre, ArrayList<Medidor> medidores){
       super(cedula,contraseña);
       this.correo = correo;
       this.direccion = direccion;
       this.nombre = nombre;
       this.cedula = cedula;
+      this.medidores = medidores;
+    }
+    
+    public Abonado(String cedula, String contraseña, String correo, String direccion, String nombre){
+        super(cedula, contraseña);
+        this.correo = correo;
+        this.direccion = direccion;
+        this.nombre = nombre;
+        this.cedula = cedula;
     }
 
     public String getCedula(){
@@ -76,7 +85,7 @@ public class Abonado extends Usuario{
       String a=medidor.getCodigoMedidor(),c=medidor.getPlan().getNombrePlan();
       System.out.printf("%-20s%-20s%-20s\n",a,b,c);   
     } 
-    System.out.print("Ingrese código factura:");
+    System.out.println("Ingrese código factura:");
     String codigoM = sc.nextLine();
      for (Medidor med:medidores){
         if(med.getCodigoMedidor().equals(codigoM)){
@@ -89,7 +98,7 @@ public class Abonado extends Usuario{
 
     public void consumoPorHoras(Medidor medidores){
       Scanner sc = new Scanner(System.in);
-      System.out.print("Ingrese código factura:");
+      System.out.println("Ingrese código factura:");
     String codigoM = sc.nextLine();
         String titulo="Medidores Asosciados:",c1= "Codigo de Medidor" ,c2="Tipo de Medidor" ,c3="Nombre del Plan";
 
@@ -127,7 +136,7 @@ public class Abonado extends Usuario{
     }
 
       Scanner sc = new Scanner(System.in);
-      System.out.print("Ingrese código factura: ");
+      System.out.println("Ingrese código factura: ");
       String codigo = sc.nextLine();
 
 
@@ -143,22 +152,17 @@ public class Abonado extends Usuario{
 
         double consumoAct = facturas.get(facturas.size()-1).getConsumo() - f.getConsumo();
          long diasFacturados=ChronoUnit.DAYS.between(f.getFechaEmision(),facturas.get(facturas.size()-1).getFechaEmision() );
-       System.out.print("Medidor:"+f.getMedidor().getCodigoMedidor());
-        System.out.print("Nombre del Plan:"+f.getPlan().getNombrePlan());
-        System.out.print("Desde:"+f.getFechaEmision());
-        System.out.print("Hasta:"+facturas.get(facturas.size()-1).getFechaEmision());
-        System.out.print("Días Facturados:"+ diasFacturados);
-        System.out.print("Lectura Anterior:"+ f.getConsumo());
-        System.out.print("Lectura Actual:"+facturas.get(facturas.size()-1).getConsumo());
-        System.out.print("Consumo:"+ consumoAct);
-        System.out.print("Cargo Fijo:"+ f.getPlan().getCargoBase());
-        System.out.print("Total a pagar:"+ total);
+       System.out.println("Medidor: "+f.getMedidor().getCodigoMedidor());
+        System.out.println("Nombre del Plan: "+f.getPlan().getNombrePlan());
+        System.out.println("Desde: "+f.getFechaEmision());
+        System.out.println("Hasta: "+facturas.get(facturas.size()-1).getFechaEmision());
+        System.out.println("Días Facturados: "+ diasFacturados);
+        System.out.println("Lectura Anterior: "+ f.getConsumo());
+        System.out.println("Lectura Actual: "+facturas.get(facturas.size()-1).getConsumo());
+        System.out.println("Consumo: "+ consumoAct);
+        System.out.println("Cargo Fijo: "+ f.getPlan().getCargoBase());
+        System.out.println("Total a pagar: "+ total);
       }
     }
-    }
-
-
-
-
-        
+    }    
 }

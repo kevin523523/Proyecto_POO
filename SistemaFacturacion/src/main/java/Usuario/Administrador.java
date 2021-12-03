@@ -37,9 +37,9 @@ public class Administrador extends Usuario {
 
     public Abonado registrarAbonado(String cedula) {
 
-        System.out.print("Ingrese correo nombre del abonado: ");
+        System.out.println("Ingrese correo nombre del abonado: ");
         String correo = sc.nextLine();
-        System.out.print("Ingrese nombre del abonado: ");
+        System.out.println("Ingrese nombre del abonado: ");
         String nombre = sc.nextLine();
 
         //la contraseña es un valor al azar que contengan 8 caracteres al menos una letra mayúscula y un dígito
@@ -57,7 +57,7 @@ public class Administrador extends Usuario {
         String direccion = sc.nextLine();
         //Nombre de USUARIO como cedula
         String contenido = "Usuario: " + cedula + "\ncontraseña: " + contraseña;
-        Correo.enviarEMail(correo, "Se registro en el sistema con las siguientes credenciales", contenido);
+        //Correo.enviarEMail(correo, "Se registro en el sistema con las siguientes credenciales", contenido);
 
         return new Abonado(cedula, contraseña, correo, direccion, nombre);
     }
@@ -71,12 +71,12 @@ public class Administrador extends Usuario {
         String correo = abonado.getCorreo();
         if (tipo_medidor.equals("inteligente")) {
             String contenido = "Dirección: " + direccion + "\nTipo de medidor: " + tipo_medidor+"\nTipo de plan: "+plan.getNombrePlan();
-            Correo.enviarEMail(correo, "Los datos del medidor registrado son", contenido);
+            //Correo.enviarEMail(correo, "Los datos del medidor registrado son", contenido);
             return new MedidorInteligente(plan, direccion);
         }////////////estamal
         else {
             String contenido = "Dirección: " + direccion + "\nTipo de medidor: " + tipo_medidor+"\nTipo de plan: "+plan.getNombrePlan();
-            Correo.enviarEMail(correo, "Los datos del medidor registrado son", contenido);
+            //Correo.enviarEMail(correo, "Los datos del medidor registrado son", contenido);
             return new MedidorAnalogico(plan, direccion);
         }
     }
@@ -127,7 +127,8 @@ public class Administrador extends Usuario {
         System.out.println("Cargo Fijo del Plan: " + factura.getMedidor().getPlan().getCargoBase());
         System.out.println("Total a pagar: " + factura.getMedidor().calcularCosto(factura.getMedidor().getLecturas(), factura.getMedidor().getPlan()));
         facturas.add(factura);
-        ///enviar al correo del Abonado  
+        ///enviar al correo del Abonado
+        
         Correo.enviarEMail(abonado.getCorreo(), "Datos de la factura: ", factura.datosFactura(facturas));
     }
 }
