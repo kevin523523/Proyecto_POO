@@ -17,7 +17,6 @@ public abstract class Medidor {
 
     private String codigoMedidor;
     private Plan plan;
-    //private Provincia provincia;
     private String direccion;
     private ArrayList<Lectura> lecturas;
     private LocalDateTime ultimaFechaCobrado;

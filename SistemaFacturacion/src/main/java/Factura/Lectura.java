@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
  */
 
 public class Lectura {
-    //private Operario operario;
     private LocalDateTime fechaToma;
     private double kilovatios;
 

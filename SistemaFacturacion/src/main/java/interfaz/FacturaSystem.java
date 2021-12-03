@@ -23,22 +23,22 @@ public class FacturaSystem {
     Scanner sc = new Scanner(System.in);
     private ArrayList<Factura> facturas = new ArrayList<>();
 
-    ArrayList<String> provincia = new ArrayList<>();
-    ArrayList<String> provincia2 = new ArrayList<>();
+    private ArrayList<String> provincia = new ArrayList<>();
+    private ArrayList<String> provincia2 = new ArrayList<>();
 
     //Creacion de planes 
     HorarioPico h1 = new HorarioPico(LocalTime.parse("12:00:00"), LocalTime.parse("13:00:00"));
     HorarioPico h2 = new HorarioPico(LocalTime.parse("18:00:00"), LocalTime.parse("20:00:00"));
     HorarioPico h3 = new HorarioPico(LocalTime.parse("13:00:00"), LocalTime.parse("14:00:00"));
     HorarioPico h4 = new HorarioPico(LocalTime.parse("19:00:00"), LocalTime.parse("21:00:00"));
-    ArrayList<HorarioPico> fecha = new ArrayList<>(Arrays.asList(h1, h2));
-    ArrayList<HorarioPico> fecha2 = new ArrayList<>(Arrays.asList(h3, h4));
+    private ArrayList<HorarioPico> fecha = new ArrayList<>(Arrays.asList(h1, h2));
+    private ArrayList<HorarioPico> fecha2 = new ArrayList<>(Arrays.asList(h3, h4));
 
     Plan p = new Plan("kevin", 12.5, provincia, 3.5, fecha);
     Plan p2 = new Plan("ian", 12.5, provincia2, 3.5, fecha2);
 
     //Agregamos los planes a el arreglo planes
-    ArrayList<Plan> planes = new ArrayList<>(Arrays.asList(p, p2));
+    private ArrayList<Plan> planes = new ArrayList<>(Arrays.asList(p, p2));
 
     //Creacion de medidores
     Medidor m1 = new MedidorInteligente(p, "10 de Agosto");
@@ -46,10 +46,10 @@ public class FacturaSystem {
     Medidor m3 = new MedidorAnalogico(p2, "23 de Octubre");
 
     //Agregamos los medidores a el arreglo medidores
-    ArrayList<Medidor> medidores = new ArrayList<>(Arrays.asList(m1, m2, m3));
+    private ArrayList<Medidor> medidores = new ArrayList<>(Arrays.asList(m1, m2, m3));
 
-    ArrayList<Medidor> medidor_Op1 = new ArrayList<>(Arrays.asList(m1, m2));
-    ArrayList<Medidor> medidor_Op2 = new ArrayList<>(Arrays.asList(m3));
+    private ArrayList<Medidor> medidor_Op1 = new ArrayList<>(Arrays.asList(m1, m2));
+    private ArrayList<Medidor> medidor_Op2 = new ArrayList<>(Arrays.asList(m3));
 
     //Creacion de Usuarios
     Usuario a = new Administrador("admin", "superadmin");
@@ -59,7 +59,7 @@ public class FacturaSystem {
     Usuario e = new Abonado("121", "345", "rig@gamil.com", "23 de Octubre", "Ri G", medidor_Op2);
 
     //Agregamos los usuarios a el arreglo usuarios
-    ArrayList<Usuario> usuarios = new ArrayList<>(Arrays.asList(a, b, c, d, e));
+    private ArrayList<Usuario> usuarios = new ArrayList<>(Arrays.asList(a, b, c, d, e));
 
 
     public void presentarMenuPrincipal() {
@@ -367,13 +367,12 @@ public class FacturaSystem {
                                     System.out.println("6. Salir");
                                     break;
 
-                                case "5":
-                                    
+                                case "5":                                    
                                     //Validado                                   
                                     for (Usuario us : usuarios) {
 
                                         if (us instanceof Abonado) {
-                                            Abonado ab = (Abonado) u;
+                                            Abonado ab = (Abonado) us;
                                             for (Medidor medidor : ab.getMedidores()) {
                                                 ad.realizarFacturacion(medidor, ab, facturas);
                                                 System.out.println("Registro satisfactorio.");

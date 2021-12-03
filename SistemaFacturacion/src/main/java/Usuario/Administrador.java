@@ -5,12 +5,8 @@
 package Usuario;
 
 import Correo.Correo;
-import Medidor.Medidor;
-import Medidor.MedidorInteligente;
-import Medidor.MedidorAnalogico;
-import Factura.Plan;
-import Factura.Factura;
-import Factura.HorarioPico;
+import Medidor.*;
+import Factura.*;
 import java.time.*;
 import java.util.Scanner;
 import java.util.*;
@@ -25,10 +21,6 @@ import java.time.temporal.ChronoUnit;
  */
 public class Administrador extends Usuario {
 
-    //private Abonado abonado;
-    //private LocalDateTime fechaFin;
-    //private LocalDateTime fechaIn;
-    //private ArrayList<Factura> facturas;
     Scanner sc = new Scanner(System.in);
 
     public Administrador(String usuario, String contraseña) {
@@ -82,8 +74,8 @@ public class Administrador extends Usuario {
     }
 
 ///simularMedicion
-    public void simularMedicion(LocalDateTime fechaInicio, LocalDateTime fechaFin, ArrayList<Medidor> medidores) {
-        
+public void simularMedicion(LocalDateTime fechaInicio, LocalDateTime fechaFin, ArrayList<Medidor> medidores) {
+
         long fdias = ChronoUnit.DAYS.between(fechaInicio, fechaFin);
 
         ArrayList<MedidorInteligente> medidoresInteligentes = new ArrayList<>();
@@ -91,18 +83,24 @@ public class Administrador extends Usuario {
         for (Medidor medidor : medidores) {
             if (medidor instanceof MedidorInteligente) {
                 MedidorInteligente mi = (MedidorInteligente) medidor;
-                medidoresInteligentes.add(mi); 
+                medidoresInteligentes.add(mi);
             }
         }
-        double acumula = 0;
+
         System.out.println("Hay " + (medidoresInteligentes.size()) + " medidores inteligentes");
         for (MedidorInteligente medidorI : medidoresInteligentes) {
-            for (long x = 0; x < fdias; x++) {
-                double kw = new Random().nextInt(10);
-                acumula = acumula+ kw;
-                System.out.println("FOR: " + kw);
-                System.out.println(medidorI.getCodigoMedidor()+" con valor actual:  "+medidorI.kwActual(acumula));
-            }
+
+            double kwActual = 2310;
+            System.out.println("Lecturas para medidor con código " + medidorI.getCodigoMedidor() + "con valor actual " + kwActual);
+            LocalDateTime fecha = fechaInicio;
+            do {
+
+                double kw = new Random().nextInt(10 + 1);
+                kwActual = kwActual + kw;
+                fecha = fecha.plusMinutes(30);
+                System.out.println(medidorI.getCodigoMedidor() + ", " + fecha + ", " + medidorI.kwActual(kwActual));//sumaKwactualKwrandom);
+
+            } while (fechaFin.compareTo(fecha) > 0);
         }
         // int    n=abonado.getMedidores.size()-1;
     }
@@ -110,8 +108,9 @@ public class Administrador extends Usuario {
 
     public void realizarFacturacion(Medidor medidor, Abonado abonado, ArrayList<Factura> facturas) {
         Factura factura = new Factura(medidor);
-
+        System.out.println("L1");
         double actualKw = factura.getMedidor().getLecturas().get(factura.getMedidor().getLecturas().size() - 1).getKilovatios();
+        System.out.println("L2");
         LocalDateTime fInicio = factura.getMedidor().getLecturas().get(0).getFechaToma();
         LocalDateTime fFin = factura.getMedidor().getLecturas().get(factura.getMedidor().getLecturas().size() - 1).getFechaToma();
         long difDias = ChronoUnit.DAYS.between(fInicio, fFin);
@@ -130,6 +129,6 @@ public class Administrador extends Usuario {
         facturas.add(factura);
         ///enviar al correo del Abonado
         
-        Correo.enviarEMail(abonado.getCorreo(), "Datos de la factura: ", factura.datosFactura(facturas));
+       Correo.enviarEMail(abonado.getCorreo(), "Datos de la factura: ", factura.datosFactura(facturas));
     }
 }

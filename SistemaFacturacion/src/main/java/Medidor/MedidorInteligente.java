@@ -28,10 +28,11 @@ public class MedidorInteligente extends Medidor {
   @Override
   public double calcularConsumo(ArrayList<Lectura> lecturas){
     int n = lecturas.size();
-    double c= lecturas.get(n-1).getKilovatios() - lecturas.get(0).getKilovatios();
+    //
+    double c = lecturas.get(n-1).getKilovatios() - lecturas.get(0).getKilovatios();
     return c;
   }   
-    
+    /*
   public ArrayList<Double> calcularConsumocada30(ArrayList<Lectura> lecturas){
     ArrayList<Double> kw30 = new ArrayList<>();
     for (Lectura l:lecturas){
@@ -39,7 +40,7 @@ public class MedidorInteligente extends Medidor {
       kw30.add(kw);
     }
     return kw30;
-  }   
+  }*/   
 
   @Override
   public double calcularCosto(ArrayList<Lectura> lecturas, Plan p){
@@ -67,7 +68,7 @@ public class MedidorInteligente extends Medidor {
   }
 
     public double kwActual(double kw) {
-        double kwActual = 300;
+        double kwActual = 0;
         return kwActual += kw;
     }
 
