@@ -55,7 +55,7 @@ public class Operario extends Usuario {
                                     System.out.println("Kilovatios consumidos " + kw + "Kw.");
                                     System.out.println("Operario: " + operario.getUsuario());
                                     
-                                    MedidorAnalogico ma = (MedidorAnalogico) m.get(n);
+                                    MedidorAnalogico ma = (MedidorAnalogico)med;
                                     ma.setOperario(operario);
                                     
                                     Lectura lectura = new Lectura(LocalDateTime.now(), lecturaActual);

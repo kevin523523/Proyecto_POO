@@ -11,6 +11,5 @@ public class Main {
 
         FacturaSystem f = new FacturaSystem();
         f.iniciar();
-
     }
 }

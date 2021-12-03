@@ -43,5 +43,8 @@ public class MedidorAnalogico extends Medidor {
     public void setOperario(Operario operario) {
         this.operario = operario;
     }
+    public String toString() {
+        return "Medidor Analogico: " + getCodigoMedidor();
+    }
 
 }

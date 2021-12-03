@@ -100,6 +100,10 @@ public abstract class Medidor {
         }
         return false;
     }
+
+    public String toString() {
+        return "codigo medidor: " + codigoMedidor;
+    }
 }
    
 

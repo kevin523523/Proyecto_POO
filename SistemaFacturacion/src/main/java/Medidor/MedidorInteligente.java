@@ -71,5 +71,8 @@ public class MedidorInteligente extends Medidor {
         double kwActual = 0;
         return kwActual += kw;
     }
+    public String toString() {
+        return "Medidor Inteligente: " + getCodigoMedidor();
+    }
 
 }

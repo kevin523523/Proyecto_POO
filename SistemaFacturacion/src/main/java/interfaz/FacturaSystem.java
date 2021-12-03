@@ -34,8 +34,8 @@ public class FacturaSystem {
     private ArrayList<HorarioPico> fecha = new ArrayList<>(Arrays.asList(h1, h2));
     private ArrayList<HorarioPico> fecha2 = new ArrayList<>(Arrays.asList(h3, h4));
 
-    Plan p = new Plan("kevin", 12.5, provincia, 3.5, fecha);
-    Plan p2 = new Plan("ian", 12.5, provincia2, 3.5, fecha2);
+    Plan p = new Plan("plan1", 12.5, provincia, 3.5, fecha);
+    Plan p2 = new Plan("plan2", 12.5, provincia2, 3.5, fecha2);
 
     //Agregamos los planes a el arreglo planes
     private ArrayList<Plan> planes = new ArrayList<>(Arrays.asList(p, p2));
