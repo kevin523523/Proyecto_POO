@@ -184,33 +184,39 @@ public class FacturaSystem {
                                                 sc.nextLine();
                                                 
                                                 //Creamos un arreglo de las provincias para validarlas
-                                                Provincia[] provincias = Provincia.values(); 
+                                                Provincia[] provincias = Provincia.values();
                                                 ArrayList<String> Lprovincia = new ArrayList<>();
                                                                                                
                                                 boolean bandera2 = true;
-                                                System.out.println("Cuando quiere dejar de agregar provincias escriba no.");                                                
+                                                boolean bandera3 = false;
+                                                System.out.println("\nCuando quiere dejar de agregar provincias escriba no.");                                                
                                                 
                                                 //Validacion de la provincia
-                                                /////////////////////////////////////////////////
                                                 String provincia = "";
-          
                                                 while (bandera2) {
                                                     do{
-                                                        System.out.print("Ingrese la provincia que pertenezca al plan: ");
-                                                        provincia = sc.nextLine();                                          
-           
-                                                        for (Provincia p : provincias) {
+                                                        System.out.print("\nIngrese la provincia que pertenezca al plan: ");
+                                                        provincia = sc.nextLine(); 
+                                                        
+                                                      
+
+                                                        for (Provincia p : provincias){
                                                             if (p.toString().equals(provincia.toUpperCase())){
                                                                 Lprovincia.add(provincia);
-                                                                
-                                                            } else if ((provincia.toLowerCase()).equals("no")) {
+                                                                System.out.println("Provincia válida.");
+                                                                bandera3 = false;                                                                
+                                                                break;
+                                                            }                                                                                                                        
+                                                            else if((provincia.toLowerCase()).equals("no")) {
                                                                 bandera2 = false;
-                                                            }
-                                                        }
-                                                        if(){
-                                                                System.out.println("Provincia invalida, vuelva a ingresar una valida");
-                                                                bandera2 = false;
-                                                            }                                  
+                                                                bandera3 = false;
+                                                                break;
+                                                            }else{
+                                                                bandera3 = true;
+                                                            }                                                           
+                                                        }if(bandera3 == true){
+                                                            System.out.println("Provincia invalida, ingresa una correcta");
+                                                        }                               
                                                     } while(bandera2);
                                                 }
                                                                                                 
@@ -251,8 +257,7 @@ public class FacturaSystem {
                                         break;
                                     
                                 case "3":
-                                    //Validado
-                                    //Abonado
+                                    //Validado        
                                     //Validacion para que el numero de cedula no se repita 
                                     ArrayList<String> abonadoCedula = new ArrayList<>(); 
                                     
@@ -285,7 +290,7 @@ public class FacturaSystem {
                                     break;
                                     
                                 case "4":
-                                    //:v
+                                    
                                     System.out.println("Siga el siguiente modelo(dia-mes-año) 30-11-2021");
                                     System.out.print("Ingrese fecha de inicio: ");
                                     String fechaInicio = sc.nextLine();
