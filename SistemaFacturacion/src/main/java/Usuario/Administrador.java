@@ -59,19 +59,17 @@ public class Administrador extends Usuario {
     }
 
     //Hay que registrar el medidor
-    public Medidor registrarMedidor(String direccion, String tipo_medidor, Plan plan,Abonado abonado) {
-        String correo = abonado.getCorreo();
-        if (tipo_medidor.equals("inteligente")) {
-            String contenido = "Dirección: " + direccion + "\nTipo de medidor: " + tipo_medidor+"\nTipo de plan: "+plan.getNombrePlan();
-            //Correo.enviarEMail(correo, "Los datos del medidor registrado son", contenido);
-            return new MedidorInteligente(plan, direccion);
-        }////////////estamal
-        else {
-            String contenido = "Dirección: " + direccion + "\nTipo de medidor: " + tipo_medidor+"\nTipo de plan: "+plan.getNombrePlan();
-            //Correo.enviarEMail(correo, "Los datos del medidor registrado son", contenido);
-            return new MedidorAnalogico(plan, direccion);
-        }
+    public Medidor registrarMedidor(String direccion, String tipo_medidor, Plan plan, Abonado abonado) {
+    String correo = abonado.getCorreo();
+    String contenido = "Dirección: " + direccion + "\nTipo de medidor: " + tipo_medidor + "\nTipo de plan: " + plan.getNombrePlan();
+    Correo.enviarEMail(correo, "Los datos del medidor registrado son", contenido);
+
+    if (tipo_medidor.equals("inteligente")) {
+        return new MedidorInteligente(plan, direccion);
+    } else {
+        return new MedidorAnalogico(plan, direccion);
     }
+}
 
 ///simularMedicion
 public void simularMedicion(LocalDateTime fechaInicio, LocalDateTime fechaFin, ArrayList<Medidor> medidores) {
